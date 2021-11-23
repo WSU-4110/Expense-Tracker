@@ -7,6 +7,7 @@ class sqlConnection {
 	private $userName;
 	private $password;
 	private $conn;
+	
 
 	function __construct(){
 		$this->hostName = "localhost";
@@ -24,6 +25,10 @@ class sqlConnection {
 		if ($conn->connect_error) {
 			die("Connection to $this->dbName failed: " . $conn->connect_error);
 		}
+	}
+
+	function checkConnection(){
+		
 	}
 }
 

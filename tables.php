@@ -107,6 +107,5 @@
             FOREIGN KEY(custID) REFERENCES customers(custID),
             FOREIGN KEY(sourceID) REFERENCES sources(sourceID)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8';
-        
-        echo "query added <br>";
+
         ?>

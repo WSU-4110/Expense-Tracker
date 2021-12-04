@@ -4,23 +4,23 @@ class sqlConnection {
 	
 	private $hostName; 
 	private $dbName; 
-	private $userName;
+	private $dbUserName;
 	private $password;
-	private $conn;
-	private $sqlconn;
+	public $conn;
+	public $sqlconn;
 	
 
 	function __construct(){
 		$this->hostName = "localhost";
 		$this->dbName = "id17843849_expensetrackerdb";
-		$this->userName = "id17843849_expensetrackerdbuser";
+		$this->dbUserName = "id17843849_expensetrackerdbuser";
 		$this->password = "AVpczEYqz;*?[8/";
 	}
 
 	function connectToDatabase() {
 		
 		// Create connection
-		$conn = new mysqli($this->hostName, $this->userName, $this->password, $this->dbName);
+		$conn = new mysqli($this->hostName, $this->dbUserName, $this->password, $this->dbName);
 		
 	}
 
@@ -36,6 +36,10 @@ class sqlConnection {
 		}
 	}
 
+	function closeConnetion(){
+		$conn->close();
+	}
+
 	function setHostName($hostName){
 		$this->hostName = $hostName;
 	}
@@ -44,8 +48,8 @@ class sqlConnection {
 		$this->dbName = $dbName;
 	}
 
-	function setUserName($userName){
-		$this->userName = $userName;
+	function setdbUserName($dbUserName){
+		$this->dbUserName = $dbUserName;
 	}
 
 	function setPassword($password){
@@ -60,8 +64,8 @@ class sqlConnection {
 		return $this->dbName;
 	}
 
-	function getUserName(){
-		return $this->userName;
+	function getdbUserName(){
+		return $this->dbUserName;
 	}
 
 	function getPassword(){

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css"/>
+    <title>Business</title>
+   
+</head>
+<body>
+<header>
+<nav>
+<ul>
+
+	<li><a href="index.html">Login</a></li>
+	<li><a href="Dashboard.html">Dashboard</a></li>
+	<li><a href="Transactions.html">Transactions</a></li>
+	<li><a href="piechart1.html">Income Graphics</a> </li>
+	<li><a href="piechart2.html">Expense Graphics</a> </li>
+	<li><a href="CustomerInfo.html">Customer Info (For Businesses)</a> </li>
+		
+</ul>	
+</nav>
+</header>
+<div class="container">
+	<div class="title">
+		<h1>Customer Informations</h1>
+	</div>
+    <form>
+        <div class="formControl">
+            <label for="title">Customer Name</label>
+            <input type="text" id="name" placeholder="Enter Name..."/>
+        </div>
+		
+        <div class="formControl">
+            <label for="yr">Purchased Amount</label>
+            <input type="number" id="amount" placeholder="Enter Amount..."/>
+        </div>
+        <div class="formControl">
+            <button class="click" id="submit">Add</button>
+        </div>
+		
+        <div id="show">
+			<h3>History</h3>
+            <pre> </pre>
+
+        </div>
+    </form>
+</div>
+<script>
+let customerinfos = JSON.parse(localStorage.getItem('customerinfos')) || [];  //to check if there are saved datas in local storage to show to users 
+const Addinfo = (e)=>
+{
+	e.preventDefault(); //to stop the form from submitting
+    let customer = 
+	{
+        Name: document.getElementById('name').value,
+        Amount: document.getElementById('amount').value
+    };
+			
+    customerinfos.push(customer); //pushing the variable customer into the array customerinfos 
+       
+    document.querySelector('form').reset();  //To clear the form 
+
+    //To show the history
+    let pre = document.querySelector('#show pre');
+	pre.innerHTML = JSON.stringify(customerinfos, '\n',2);
+  
+		
+    localStorage.setItem('customerinfos', JSON.stringify(customerinfos));  //To save in the local storage 
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+document.getElementById('submit').addEventListener('click', Addinfo);
+});
+</script>
+</body>
+</html>

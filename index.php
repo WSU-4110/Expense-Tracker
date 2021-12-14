@@ -59,13 +59,23 @@
         </form>
 	</div>
 	<?php
-       require "dbconnector.php";
-       require "tables.php"
-       
-       $connection = dbConnection::getdbConnection();
-	   
-	  
-       
+		require "usersClass.php";
+		require "DBandTables.php";
+		
+		$SQLConnection = new sqlConnection();
+		$db = new DBandTables();
+
+		dbConnection::getdbConnection();
+		$connection = $SQLConnection->connectToDatabase(); 
+
+		$sql = $db->createDB();
+		$db->createTables();
+		$db->checkTableCreation();
+
+		
+		
+
+
     ?>
 </body>
 </html>
